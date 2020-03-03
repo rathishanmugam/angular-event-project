@@ -1,0 +1,65 @@
+
+  <mat-card>
+    <mat-card-content class="example-card">
+      <mat-card-header>
+        <mat-card-title>
+
+          <h2>Event Name: {{event?.category | uppercase}}</h2>
+        </mat-card-title>
+      </mat-card-header>
+<!--      <div><strong>Event Id: </strong>{{event?.eventId}}</div>-->
+      <div><strong>Date:</strong> {{event?.date | date:'shortDate'}}</div>
+      <div><strong>Organizer: </strong>{{event?.organizer}}</div>
+      <div><strong>Title: </strong>{{event?.title}}</div>
+      <div><strong>Description: </strong>{{event?.description}}</div>
+      <div><strong>Price: </strong>{{event?.price | currency:'USD'}}</div>
+      <div *ngIf="event?.location">
+        <span><strong>Location: </strong>{{event?.location?.address}}</span>
+        <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+      </div>
+      <div *ngIf="event?.onlineUrl">
+        <strong> Online URL: </strong>{{event?.onlineUrl}}
+      </div>
+    </mat-card-content>
+    <button mat-button (click)="openDialog('Add',event)" mat-raised-button color="primary">Add Row</button>
+    <br>
+  </mat-card>
+  <hr>
+
+
+
+  <mat-card >
+    <div fxLayoutAlign="space-between stretch" fxLayout="row wrap" fxLayout.xs="column">
+ <div *ngIf="event?.sessions">
+    <mat-card *ngFor="let session of event.sessions" >
+      <mat-card-content class="event-card">
+        <mat-card-header>
+          <mat-card-title>
+
+            <h2>Session Name: {{session?.name | uppercase}}</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <div><strong>Session Id: </strong>{{session?.sessionId}}</div>
+
+        <div><strong>Presenter: </strong>{{session?.presenter}}</div>
+        <div><strong>Duration: </strong>{{session?.duration}}</div>
+        <div><strong>Time: </strong>{{session?.time}}</div>
+        <div><strong>Show: </strong>{{session?.show }}</div>
+        <div><strong>Abstract: {{session?.abstract}} </strong></div>
+        <mat-card-actions>
+          <button mat-icon-button (click)="openDialog('Delete',session)" color="warn">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+<!--          <button mat-icon-button (click)="openDialog('Update',session)" color="accent">-->
+<!--            <mat-icon class="mat-18">system_update</mat-icon>-->
+<!--          </button>-->
+        </mat-card-actions>
+      </mat-card-content>
+
+    </mat-card>
+    </div>
+    </div>
+  </mat-card>
+
+
+

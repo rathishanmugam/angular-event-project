@@ -1,0 +1,273 @@
+<div class="col-md-12">
+  <h3>Create Event</h3>
+</div>
+<div class="col-md-6">
+<!--  <form [formGroup] ="newEventForm" (ngSubmit)="saveEvent(newEventForm.value)" autocomplete="off">-->
+    <form [formGroup]="newEventForm"   autocomplete="off" novalidate>
+
+    <div class="form-group" [ngClass]="{'error': category.invalid && category.dirty }">
+      <label for="category">Category:</label>
+      <select formControlName="category" id = "category" required class="form-control">
+        <option *ngFor="let type of categorys ">{{type}}</option>
+
+      </select>
+<!--      <div *ngIf="(category.invalid || category.dirty )"-->
+<!--           class="alert alert-danger">-->
+<!--        <div *ngIf="category.errors.required">-->
+<!--          Name is required.-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+
+
+    <div class="form-group" [ngClass]="{'error': organizer.invalid && organizer.dirty }">
+      <label for="organizer">Organizer:</label>
+      <input formControlName="organizer" id="organizer" type="text" class="form-control" placeholder="organizer..." />
+      <div *ngIf="organizer.invalid && (organizer.dirty || organizer.touched)"
+           class="alert alert-danger">
+        <div *ngIf="organizer.errors.required">
+          Name is required.
+        </div>
+        <div *ngIf="organizer.errors.minlength">
+          Name must be at least 4 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'error': title.invalid && title.dirty }">
+      <label for="organizer">Title:</label>
+      <input formControlName="title" id="title" type="text" class="form-control" placeholder="title..." />
+      <div *ngIf="title.invalid && (title.dirty || title.touched)"
+           class="alert alert-danger">
+        <div *ngIf="organizer.errors.required">
+          Title is required.
+        </div>
+      </div>
+    </div>
+      <div class="form-group" [ngClass]="{'error': description.invalid && description.dirty }">
+        <label for="description">Description:</label>
+        <input formControlName="description" id="description" type="text" class="form-control" placeholder="description..." />
+        <div *ngIf="description.invalid && (description.dirty || description.touched)"
+             class="alert alert-danger">
+          <div *ngIf="description.errors.required">
+            description is required.
+          </div>
+        </div>
+      </div>
+
+<!--      <mat-form-field>-->
+<!--        <input matInput [matDatepicker]="picker" placeholder="Choose a date">-->
+<!--        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--        <mat-datepicker #picker></mat-datepicker>-->
+<!--      </mat-form-field>-->
+
+      <div class="form-group" [ngClass]="{'error': date.invalid && date.dirty }">
+        <label for="description">date:</label>
+        <input formControlName="date" id="date" type="text" class="form-control" placeholder="date..." />
+        <div *ngIf="date.invalid && (date.dirty || date.touched)"
+             class="alert alert-danger">
+          <div *ngIf="date.errors.required">
+            date is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'error': price.invalid && price.dirty }">
+        <label for="price">price:</label>
+        <input formControlName="price" id="price" type="number" class="form-control" placeholder="price..." />
+        <div *ngIf="price.invalid && (price.dirty || price.touched)"
+             class="alert alert-danger">
+          <div *ngIf="price.errors.required">
+            Name is required.
+          </div>
+          <div *ngIf="price.errors.pattern">
+            Name must be start number.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label pt-0">Location Type</label>
+        <div class="col-md-8">
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input"
+                     type="radio"
+                     value="address"
+                     formControlName="notification"
+              (click)="setNotification('address')"> address
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input class="form-check-input"
+                     type="radio"
+                     value="onlineUrl"
+                     formControlName="notification"
+              (click)="setNotification('onlineUrl')"> onlineUrl
+            </label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="newEventForm.get('notification').value === 'address'">
+
+      <div formGroupName="location">
+        <h3>Location</h3>
+        <div class="form-group" [ngClass]="{'error': address.invalid && address.dirty }">
+          <label for="address">Address:</label>
+          <input formControlName="address" id="address" type="text" class="form-control" placeholder="address..." />
+          <div *ngIf="address.invalid && (address.dirty || address.touched)"
+               class="alert alert-danger">
+            <div *ngIf="address.errors.required">
+              address is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'error': city.invalid && city.dirty }">
+          <label for="address">city:</label>
+          <input formControlName="city" id="city" type="text" class="form-control" placeholder="city..." />
+          <div *ngIf="city.invalid && (city.dirty || city.touched)"
+               class="alert alert-danger">
+            <div *ngIf="city.errors.required">
+              city is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{'error': country.invalid && country.dirty }">
+          <label for="address">country:</label>
+          <input formControlName="country" id="country" type="text" class="form-control" placeholder="country..." />
+          <div *ngIf="country.invalid && (country.dirty || country.touched)"
+               class="alert alert-danger">
+            <div *ngIf="country.errors.required">
+              country is required.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+      <div *ngIf="newEventForm.get('notification').value === 'onlineUrl'">
+
+      <div class="form-group" [ngClass]="{'error': onlineUrl.invalid && onlineUrl.dirty }">
+        <label for="onlineUrl">OnlineUrl:</label>
+        <input formControlName="onlineUrl" id="onlineUrl" type="text" class="form-control" placeholder="online url..." />
+        <div *ngIf="onlineUrl.invalid && (onlineUrl.dirty || onlineUrl.touched)"
+             class="alert alert-danger">
+          <div *ngIf="onlineUrl.errors.required">
+            online Url is required.
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input"
+                     id="sendSession"
+                     type="checkbox"
+
+                     formControlName="sendSession">Add session
+            </label>
+          </div>
+
+
+     <div *ngIf="newEventForm.get('sendSession').value">
+      <div formArrayName="sessions">
+        <h3>session</h3>
+        <button   [disabled]="sessions.valid" (click)="addsession()" >Add Session</button>
+        <div *ngFor="let session of sessions.controls; let i=index">
+
+          <div [formGroupName]="i">
+            <div class="col-md-6">
+
+          <label class=" col-form-label"  attr.for="{{'name' + i}}">
+            session name:</label>
+          <input  formControlName="name" id="{{'name' + i}}" class="form-control" placeholder="name" type="text" />
+              <div *ngIf="sessions.controls[i].get('name').invalid && (sessions.controls[i].get('name').dirty || sessions.controls[i].get('name').touched)"
+                   class="alert alert-danger">
+                <label *ngIf="sessions.controls[i].get('name').errors?.required">
+                  Name required.
+                </label>
+
+              </div>
+
+            </div>
+          <label class="col-md-6 col-form-label" attr.for="{{'presenter' + i}}">
+            session presenter:</label>
+            <div class="col-md-6">
+            <input id="{{'presenter' + i}}" formControlName="presenter" placeholder="presenter"  class="form-control" type="text" >
+              <div *ngIf="sessions.controls[i].get('presenter').invalid && (sessions.controls[i].get('presenter').dirty || sessions.controls[i].get('presenter').touched)"
+                   class="alert alert-danger">
+                <label *ngIf="sessions.controls[i].get('presenter').errors?.required">
+                  Presenter required.
+                </label>
+              </div>
+            </div><br />
+          <label class="col-md-6 col-form-label" attr.for="{{'duration' + i}}">
+            session duration:</label>
+            <div class="col-md-6">
+            <input  id="{{'duration' + i}}" formControlName="duration" placeholder="duration" class="form-control" type="number" >
+              <div *ngIf="sessions.controls[i].get('duration').invalid && (sessions.controls[i].get('duration').dirty || sessions.controls[i].get('duration').touched)"
+                   class="alert alert-danger">
+                <label *ngIf="sessions.controls[i].get('duration').errors?.required">
+                  Duration required.
+                </label>
+              </div>
+            </div><br />
+          <label class="col-md-2 col-form-label" attr.for="{{'time' + i}}">
+            session time:</label>
+                <div class="col-md-3">
+            <input id="{{'time' + i}}" formControlName="time" class="form-control" placeholder="time"  type="number" >
+                  <div *ngIf="sessions.controls[i].get('time').invalid && (sessions.controls[i].get('time').dirty || sessions.controls[i].get('time').touched)"
+                       class="alert alert-danger">
+                    <label *ngIf="sessions.controls[i].get('time').errors?.required">
+                      Time required.
+                    </label>
+                  </div>
+                </div><label class="col-md-2 col-form-label" attr.for="{{'show' + i}}">
+
+                  session show:</label>
+                <div class="col-md-3">
+            <input  id="{{'show' + i}}" formControlName="show" placeholder="show" class="form-control" type="text" >
+                  <div *ngIf="sessions.controls[i].get('show').invalid && (sessions.controls[i].get('show').dirty || sessions.controls[i].get('show').touched)"
+                       class="alert alert-danger">
+                    <label *ngIf="sessions.controls[i].get('show').errors?.required">
+                      Show required.
+                    </label>
+                  </div>
+                </div><label class="col-md-2 col-form-label" attr.for="{{'abstract' + i}}">
+
+                  session abstract:</label>
+                <div class="col-md-3">
+            <input  id="{{'abstract' + i}}" formControlName="abstract" class="form-control" placeholder="abstract" type="text" >
+                  <div *ngIf="sessions.controls[i].get('abstract').invalid && (sessions.controls[i].get('abstract').dirty || sessions.controls[i].get('abstract').touched)"
+                       class="alert alert-danger">
+                    <label *ngIf="sessions.controls[i].get('abstract').errors?.required">
+                      Abstract required.
+                    </label>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-8 offset-md-3">
+          <button class="btn btn-primary"
+                  style="font-size:smaller;margin-bottom:12px;margin-right:2px"
+                  title="Click to remove this tag"
+                  (click)="deletesession(i)">
+            Remove Session
+          </button>
+          </div>
+        </div>
+      </div>
+
+
+
+     </div>
+      <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+      <button type="button" (click) = 'cancel()' class="btn btn-default">Cancel</button>
+
+    </form>
+</div>
+<br>Value: {{ newEventForm.value | json }}

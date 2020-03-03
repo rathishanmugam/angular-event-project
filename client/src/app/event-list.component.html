@@ -1,0 +1,33 @@
+<h1>Upcoming Angular Events</h1>
+<hr/>
+<div fxLayoutAlign="space-between stretch" fxLayout="row wrap" fxLayout.xs="column">
+  <mat-card>
+  <mat-card *ngFor="let event of events" >
+    <mat-card-content class="example-card" [routerLink]="['/events',event._id]">
+      <mat-card-header >
+        <mat-card-title>
+          <h2>Event Category: {{event?.category | uppercase}}</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <div><strong>Event Id: {{event?.eventId}} </strong></div>
+      <div><strong>Organizer: {{event?.organizer}}</strong></div>
+      <div><strong>Title: {{event?.title}}</strong></div>
+      <div><strong>Description: {{event?.description}}</strong></div>
+      <div><strong>Price: {{event?.price | currency:'USD'}}</strong></div>
+      <div *ngIf="event?.location">
+        <span><strong>Location: {{event?.location?.address}},</strong></span>
+        <span class="pad-left"><strong>{{event?.location?.city}}, {{event?.location?.country}}</strong></span>
+      </div>
+      <div *ngIf="event?.onlineUrl"><strong>
+        Online URL: {{event?.onlineUrl}}</strong>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button  (click)="deleteEvent(event)" mat-flat-button color="warn">Cancel</button>
+
+    </mat-card-actions>
+  </mat-card>
+
+  </mat-card>
+</div>
+

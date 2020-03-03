@@ -1,0 +1,27 @@
+/*.example-form {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
+
+/*.example-form > * {*/
+/*  width: 100%;*/
+/*}*/
+
+/*.close{*/
+/*  width: 100%;*/
+/*}*/
+mat-card {
+  min-width: 100%;
+  border: 2px solid #2f96b4;
+  margin: 2em auto;
+  text-align: center;
+}
+em {float:right; color:#E05C65; padding-left: 10px;}
+.error input {background-color:#E3C3C5;}
+.error ::-webkit-input-placeholder { color: #999; }
+.error ::-moz-placeholder { color: #999; }
+.error :-moz-placeholder { color:#999; }
+.error :ms-input-placeholder { color: #999; }
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}

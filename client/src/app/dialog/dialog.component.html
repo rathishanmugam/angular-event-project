@@ -1,0 +1,106 @@
+<mat-card>
+
+<h1 mat-dialog-title> Session:: <strong>{{localData.action}}</strong></h1>
+<div mat-dialog-content>
+  <form novalidate [formGroup]="newSessionsForm" >
+<!--    <div formGroupName="sessions">-->
+      <h3>Session</h3>
+
+<!--  <mat-form-field *ngIf="localData.action != 'Delete'; else elseTemplate">-->
+<!--      <input matInput placeholder="sessionId" type="text" [(ngModel)]="localData.sessionId" formControlName="sessionId"   class="form-control" name="sessionId">-->
+<!--    <div *ngIf="newSessionsForm.get('sessions.sessionId').invalid && (newSessionsForm.get('sessions.sessionId').dirty || newSessionsForm.get('sessions.sessionId').touched)"-->
+<!--         class="alert alert-danger">-->
+<!--      <div *ngIf="newSessionsForm.get('sessions.sessionId').errors.required">-->
+<!--        session id is required.-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </mat-form-field>-->
+<!--      -->
+    <mat-form-field *ngIf="localData.action  != 'Delete'; ">
+
+      <input matInput placeholder="name" type="text" [(ngModel)]="localData.name" formControlName="name"   class="form-control" name="name">
+      <div *ngIf="newSessionsForm.get('name').invalid && (newSessionsForm.get('name').dirty || newSessionsForm.get('name').touched)"
+           class="alert alert-danger">
+        <div *ngIf="newSessionsForm.get('name').errors.required">
+          name is required.
+        </div>
+      </div>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="localData.action  != 'Delete'; ">
+
+      <input matInput placeholder="presenter" type="text"   [(ngModel)]="localData.presenter" formControlName="presenter"  class="form-control" name="presenter">
+      <div *ngIf="newSessionsForm.get('presenter').invalid && (newSessionsForm.get('presenter').dirty || newSessionsForm.get('presenter').touched)"
+           class="alert alert-danger">
+        <div *ngIf="newSessionsForm.get('presenter').errors.required">
+          presenter is required.
+        </div>
+      </div>
+    </mat-form-field>
+    <mat-form-field *ngIf="localData.action  != 'Delete'; ">
+      <input matInput placeholder="duration" type="text" [(ngModel)]="localData.duration" formControlName="duration"   class="form-control" name="duration">
+      <div *ngIf="newSessionsForm.get('duration').invalid && (newSessionsForm.get('duration').dirty || newSessionsForm.get('duration').touched)"
+           class="alert alert-danger">
+        <div *ngIf="newSessionsForm.get('duration').errors.required">
+          duration is required.
+        </div>
+      </div>
+    </mat-form-field>
+    <mat-form-field *ngIf="localData.action  != 'Delete'; ">
+      <input matInput placeholder="time" type="text" [(ngModel)]="localData.time" formControlName="time"   class="form-control" name="time">
+      <div *ngIf="newSessionsForm.get('time').invalid && (newSessionsForm.get('time').dirty || newSessionsForm.get('time').touched)"
+           class="alert alert-danger">
+        <div *ngIf="newSessionsForm.get('time').errors.required">
+          time is required.
+        </div>
+      </div>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="localData.action  != 'Delete'; ">
+
+      <input matInput placeholder="show" type="text" [(ngModel)]="localData.show" formControlName="show"   class="form-control" name="show">
+      <div *ngIf="newSessionsForm.get('show').invalid && (newSessionsForm.get('show').dirty || newSessionsForm.get('show').touched)"
+           class="alert alert-danger">
+        <div *ngIf="newSessionsForm.get('show').errors.required">
+          show is required.
+        </div>
+      </div>
+
+    </mat-form-field>
+    <mat-form-field *ngIf="localData.action  != 'Delete'; ">
+        <input matInput placeholder="Enter your abstract" [formControl]="abstract" required>
+        <mat-error *ngIf="abstract.invalid">{{getErrorMessage()}}</mat-error>
+<!--      <input matInput placeholder="abstract" type="text" [(ngModel)]="localData.abstract" formControlName="abstract"   class="form-control" name="abstract">-->
+<!--      <div *ngIf="newSessionsForm.get('sessions.abstract').invalid && (newSessionsForm.get('sessions.abstract').dirty || newSessionsForm.get('sessions.abstract').touched)"-->
+<!--           class="alert alert-danger">-->
+<!--        <div *ngIf="newSessionsForm.get('sessions.abstract').errors.required">-->
+<!--          abstract is required.-->
+<!--        </div>-->
+<!--      </div>-->
+
+    </mat-form-field>
+
+<!--    <mat-form-field *ngIf="localData.action  != 'Delete'; ">-->
+
+<!--      <input matInput placeholder="address" type="text" [(ngModel)]="localData.location.address" formControlName="address"   class="form-control" name="address">-->
+<!--      <mat-error *ngIf="hasError('address', 'required')">address is required</mat-error>-->
+
+<!--    </mat-form-field>-->
+
+
+
+
+
+<ng-template #elseTemplate>
+  Sure to delete <b>{{localData.name}}</b>?
+</ng-template>
+<!--    </div>-->
+</form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-flat-button  (click)="doAction()">{{localData.action}}</button>
+  <button  (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
+</mat-card>
+
